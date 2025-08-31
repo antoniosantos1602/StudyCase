@@ -1,0 +1,1171 @@
+
+----------------------------------------
+Initial Dataset
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 56931 entries, 0 to 56930
+Data columns (total 79 columns):
+ #   Column                       Non-Null Count  Dtype  
+---  ------                       --------------  -----  
+ 0   destination_port             56931 non-null  int64  
+ 1   protocol                     56931 non-null  int64  
+ 2   flow_duration                56931 non-null  int64  
+ 3   total_fwd_packets            56931 non-null  int64  
+ 4   total_backward_packets       56931 non-null  int64  
+ 5   total_length_of_fwd_packets  56931 non-null  int64  
+ 6   total_length_of_bwd_packets  56931 non-null  float64
+ 7   fwd_packet_length_max        56931 non-null  int64  
+ 8   fwd_packet_length_min        56931 non-null  int64  
+ 9   fwd_packet_length_mean       56931 non-null  float64
+ 10  fwd_packet_length_std        56931 non-null  float64
+ 11  bwd_packet_length_max        56931 non-null  int64  
+ 12  bwd_packet_length_min        56931 non-null  int64  
+ 13  bwd_packet_length_mean       56931 non-null  float64
+ 14  bwd_packet_length_std        56931 non-null  float64
+ 15  flow_bytes/s                 56859 non-null  float64
+ 16  flow_packets/s               56859 non-null  float64
+ 17  flow_iat_mean                56931 non-null  float64
+ 18  flow_iat_std                 56931 non-null  float64
+ 19  flow_iat_max                 56931 non-null  float64
+ 20  flow_iat_min                 56931 non-null  float64
+ 21  fwd_iat_total                56931 non-null  float64
+ 22  fwd_iat_mean                 56931 non-null  float64
+ 23  fwd_iat_std                  56931 non-null  float64
+ 24  fwd_iat_max                  56931 non-null  float64
+ 25  fwd_iat_min                  56931 non-null  float64
+ 26  bwd_iat_total                56931 non-null  float64
+ 27  bwd_iat_mean                 56931 non-null  float64
+ 28  bwd_iat_std                  56931 non-null  float64
+ 29  bwd_iat_max                  56931 non-null  float64
+ 30  bwd_iat_min                  56931 non-null  float64
+ 31  fwd_psh_flags                56931 non-null  int64  
+ 32  bwd_psh_flags                56931 non-null  int64  
+ 33  fwd_urg_flags                56931 non-null  int64  
+ 34  bwd_urg_flags                56931 non-null  int64  
+ 35  fwd_header_length            56931 non-null  int64  
+ 36  bwd_header_length            56931 non-null  int64  
+ 37  fwd_packets/s                56931 non-null  float64
+ 38  bwd_packets/s                56931 non-null  float64
+ 39  min_packet_length            56931 non-null  int64  
+ 40  max_packet_length            56931 non-null  int64  
+ 41  packet_length_mean           56931 non-null  float64
+ 42  packet_length_std            56931 non-null  float64
+ 43  packet_length_variance       56931 non-null  float64
+ 44  fin_flag_count               56931 non-null  int64  
+ 45  syn_flag_count               56931 non-null  int64  
+ 46  rst_flag_count               56931 non-null  int64  
+ 47  psh_flag_count               56931 non-null  int64  
+ 48  ack_flag_count               56931 non-null  int64  
+ 49  urg_flag_count               56931 non-null  int64  
+ 50  cwe_flag_count               56931 non-null  int64  
+ 51  ece_flag_count               56931 non-null  int64  
+ 52  down/up_ratio                56931 non-null  int64  
+ 53  average_packet_size          56931 non-null  float64
+ 54  avg_fwd_segment_size         56931 non-null  float64
+ 55  avg_bwd_segment_size         56931 non-null  float64
+ 56  fwd_avg_bytes/bulk           56931 non-null  int64  
+ 57  fwd_avg_packets/bulk         56931 non-null  int64  
+ 58  fwd_avg_bulk_rate            56931 non-null  int64  
+ 59  bwd_avg_bytes/bulk           56931 non-null  int64  
+ 60  bwd_avg_packets/bulk         56931 non-null  int64  
+ 61  bwd_avg_bulk_rate            56931 non-null  int64  
+ 62  subflow_fwd_packets          56931 non-null  int64  
+ 63  subflow_fwd_bytes            56931 non-null  int64  
+ 64  subflow_bwd_packets          56931 non-null  int64  
+ 65  subflow_bwd_bytes            56931 non-null  int64  
+ 66  init_win_bytes_forward       56931 non-null  int64  
+ 67  init_win_bytes_backward      56931 non-null  int64  
+ 68  act_data_pkt_fwd             56931 non-null  int64  
+ 69  min_seg_size_forward         56931 non-null  int64  
+ 70  active_mean                  56931 non-null  float64
+ 71  active_std                   56931 non-null  float64
+ 72  active_max                   56931 non-null  float64
+ 73  active_min                   56931 non-null  float64
+ 74  idle_mean                    56931 non-null  float64
+ 75  idle_std                     56931 non-null  float64
+ 76  idle_max                     56931 non-null  float64
+ 77  idle_min                     56931 non-null  float64
+ 78  label                        56931 non-null  object 
+dtypes: float64(37), int64(41), object(1)
+memory usage: 34.3+ MB
+
+
+Feature 'destination_port' has 7095 unique values:
+destination_port
+53     19156
+80     17444
+443     9828
+22       523
+21       513
+123      462
+137      159
+389      129
+88       104
+465       73
+Name: count, dtype: int64 
+
+Feature 'protocol' has 3 unique values:
+protocol
+6     36945
+17    19950
+0        36
+Name: count, dtype: int64 
+
+Feature 'flow_duration' has 34891 unique values:
+flow_duration
+3      2083
+4      1268
+1       844
+2       399
+48      222
+5       208
+49      189
+55       97
+53       95
+211      93
+Name: count, dtype: int64 
+
+Feature 'total_fwd_packets' has 246 unique values:
+total_fwd_packets
+2     22234
+1     10727
+3      3417
+7      2840
+6      2496
+4      2332
+8      2220
+9      1884
+5      1811
+10      860
+Name: count, dtype: int64 
+
+Feature 'total_backward_packets' has 300 unique values:
+total_backward_packets
+2     14825
+1     13166
+0      9773
+6      4668
+7      2962
+5      2056
+4      1694
+8       897
+3       613
+15      557
+Name: count, dtype: int64 
+
+Feature 'total_length_of_fwd_packets' has 3297 unique values:
+total_length_of_fwd_packets
+0     11369
+12     2123
+6      1276
+64     1043
+31      921
+68      796
+70      782
+60      731
+76      695
+72      679
+Name: count, dtype: int64 
+
+Feature 'total_length_of_bwd_packets' has 5530 unique values:
+total_length_of_bwd_packets
+0.0        16484
+11595.0     7752
+6.0         1718
+46.0         667
+96.0         501
+188.0        431
+264.0        330
+204.0        316
+112.0        308
+48.0         300
+Name: count, dtype: int64 
+
+Feature 'fwd_packet_length_max' has 1743 unique values:
+fwd_packet_length_max
+0     11369
+6      3667
+31     1703
+46     1198
+37     1044
+44      980
+42      972
+32      968
+34      898
+45      858
+Name: count, dtype: int64 
+
+Feature 'fwd_packet_length_min' has 145 unique values:
+fwd_packet_length_min
+0     32512
+6      4145
+44     1009
+42     1008
+32      976
+34      908
+35      852
+48      848
+45      829
+40      779
+Name: count, dtype: int64 
+
+Feature 'fwd_packet_length_mean' has 6689 unique values:
+fwd_packet_length_mean
+0.0     11369
+6.0      3165
+44.0     1007
+42.0      984
+32.0      974
+34.0      906
+35.0      862
+48.0      862
+45.0      810
+38.0      770
+Name: count, dtype: int64 
+
+Feature 'fwd_packet_length_std' has 10273 unique values:
+fwd_packet_length_std
+0.000000      33896
+21.920310       603
+3.464102        329
+17.897858       307
+26.162951       282
+78.686539       250
+23.276598       248
+9.899495        230
+189.504617      178
+14.433757       154
+Name: count, dtype: int64 
+
+Feature 'bwd_packet_length_max' has 1828 unique values:
+bwd_packet_length_max
+0       16484
+5792     3266
+4344     2647
+6        1958
+1460     1325
+7240      897
+48        803
+1448      683
+8688      576
+46        573
+Name: count, dtype: int64 
+
+Feature 'bwd_packet_length_min' has 327 unique values:
+bwd_packet_length_min
+0      34469
+6       1884
+48       807
+46       533
+132      372
+79       338
+102      325
+23       277
+94       256
+61       253
+Name: count, dtype: int64 
+
+Feature 'bwd_packet_length_mean' has 7036 unique values:
+bwd_packet_length_mean
+0.000000       16484
+1932.500000     3750
+1656.428571     2280
+6.000000        1796
+2319.000000     1144
+48.000000        803
+46.000000        527
+1449.375000      374
+132.000000       373
+79.000000        329
+Name: count, dtype: int64 
+
+Feature 'bwd_packet_length_std' has 7887 unique values:
+bwd_packet_length_std
+0.000000       37738
+2181.008184     1124
+1754.831473      919
+2120.732252      422
+1760.597234      418
+2118.227235      276
+3331.638186      273
+2537.820147      240
+1947.638216      234
+1757.579003      228
+Name: count, dtype: int64 
+
+Feature 'flow_bytes/s' has 40008 unique values:
+flow_bytes/s
+0.0           11147
+4000000.0       295
+10300000.0      210
+7750000.0       148
+12300000.0      144
+3000000.0       117
+9250000.0        83
+12000000.0       74
+31000000.0       64
+37000000.0       42
+Name: count, dtype: int64 
+
+Feature 'flow_packets/s' has 36279 unique values:
+flow_packets/s
+6.666667e+05    2062
+5.000000e+05    1142
+2.000000e+06     845
+1.000000e+06     379
+4.166667e+04     207
+4.081633e+04     157
+7.500000e+05     142
+4.000000e+05     118
+2.469136e+04     118
+2.325581e+04     116
+Name: count, dtype: int64 
+
+Feature 'flow_iat_mean' has 35337 unique values:
+flow_iat_mean
+3.0           2068
+4.0           1123
+1.0            895
+2.0            511
+48.0           230
+49.0           196
+10500000.0     178
+54.0           156
+56.0           154
+55.0           148
+Name: count, dtype: int64 
+
+Feature 'flow_iat_std' has 23952 unique values:
+flow_iat_std
+0.0           18175
+28400000.0      300
+28500000.0      276
+29700000.0      231
+24500000.0      201
+28700000.0      184
+27300000.0      171
+11900000.0      167
+27400000.0      160
+25600000.0      147
+Name: count, dtype: int64 
+
+Feature 'flow_iat_max' has 22167 unique values:
+flow_iat_max
+10000000.0     2258
+3.0            2224
+4.0            1239
+1.0             900
+10200000.0      577
+100000000.0     469
+2.0             382
+98300000.0      346
+48.0            328
+98700000.0      314
+Name: count, dtype: int64 
+
+Feature 'flow_iat_min' has 7856 unique values:
+flow_iat_min
+3.0     12220
+1.0     10406
+4.0      5182
+2.0      2585
+0.0      1987
+48.0     1358
+5.0       575
+49.0      550
+47.0      432
+6.0       243
+Name: count, dtype: int64 
+
+Feature 'fwd_iat_total' has 12671 unique values:
+fwd_iat_total
+0.0            10931
+3.0             6851
+4.0             3748
+1.0             2785
+48.0            1315
+116000000.0      917
+49.0             842
+2.0              750
+117000000.0      481
+100000000.0      465
+Name: count, dtype: int64 
+
+Feature 'fwd_iat_mean' has 17841 unique values:
+fwd_iat_mean
+0.0           10931
+3.0            6844
+4.0            3570
+1.0            2838
+48.0           1303
+2.0             891
+49.0            815
+19700000.0      440
+14200000.0      387
+14100000.0      375
+Name: count, dtype: int64 
+
+Feature 'fwd_iat_std' has 14975 unique values:
+fwd_iat_std
+0.000000e+00    33015
+4.400000e+07      209
+4.410000e+07      197
+1.414214e+00      163
+3.730000e+07      156
+1.190000e+07      155
+4.020000e+07      153
+4.030000e+07      152
+3.480000e+07      148
+3.720000e+07      147
+Name: count, dtype: int64 
+
+Feature 'fwd_iat_max' has 12865 unique values:
+fwd_iat_max
+0.0           10931
+3.0            7033
+4.0            3685
+1.0            2842
+10000000.0     1359
+48.0           1343
+10100000.0     1116
+49.0            846
+2.0             722
+10200000.0      629
+Name: count, dtype: int64 
+
+Feature 'fwd_iat_min' has 5810 unique values:
+fwd_iat_min
+0.0     12042
+3.0     10155
+1.0      8551
+4.0      5344
+48.0     1929
+2.0      1751
+49.0     1203
+47.0      475
+5.0       470
+18.0      163
+Name: count, dtype: int64 
+
+Feature 'bwd_iat_total' has 12239 unique values:
+bwd_iat_total
+0.0            22969
+3.0             4545
+4.0             3368
+48.0            2230
+49.0            1001
+1.0              945
+111000000.0      693
+2.0              437
+47.0             394
+110000000.0      321
+Name: count, dtype: int64 
+
+Feature 'bwd_iat_mean' has 17111 unique values:
+bwd_iat_mean
+0.0           22969
+3.0            4539
+4.0            3321
+48.0           2230
+49.0            991
+1.0             963
+2.0             466
+47.0            393
+16400000.0      242
+14200000.0      192
+Name: count, dtype: int64 
+
+Feature 'bwd_iat_std' has 16136 unique values:
+bwd_iat_std
+0.0           37786
+40300000.0      121
+40200000.0      117
+40100000.0       83
+40500000.0       81
+40600000.0       79
+40400000.0       66
+40700000.0       65
+34600000.0       63
+34800000.0       61
+Name: count, dtype: int64 
+
+Feature 'bwd_iat_max' has 12457 unique values:
+bwd_iat_max
+0.0           22969
+3.0            4590
+4.0            3336
+48.0           2247
+10000000.0     1384
+10100000.0     1289
+49.0           1005
+1.0             963
+10200000.0      626
+2.0             430
+Name: count, dtype: int64 
+
+Feature 'bwd_iat_min' has 3044 unique values:
+bwd_iat_min
+0.0     23143
+3.0      6281
+4.0      4381
+48.0     3852
+1.0      2835
+49.0     1883
+2.0      1411
+47.0     1279
+46.0      944
+45.0      654
+Name: count, dtype: int64 
+
+Feature 'fwd_psh_flags' has 2 unique values:
+fwd_psh_flags
+0    54053
+1     2878
+Name: count, dtype: int64 
+
+Feature 'bwd_psh_flags' has 1 unique values:
+bwd_psh_flags
+0    56931
+Name: count, dtype: int64 
+
+Feature 'fwd_urg_flags' has 1 unique values:
+fwd_urg_flags
+0    56931
+Name: count, dtype: int64 
+
+Feature 'bwd_urg_flags' has 1 unique values:
+bwd_urg_flags
+0    56931
+Name: count, dtype: int64 
+
+Feature 'fwd_header_length' has 629 unique values:
+fwd_header_length
+64     11707
+40      9572
+32      5634
+20      4679
+80      1463
+104     1459
+232     1198
+296     1087
+264      981
+200      977
+Name: count, dtype: int64 
+
+Feature 'bwd_header_length' has 668 unique values:
+bwd_header_length
+0      9773
+40     7078
+64     6841
+32     6296
+20     6209
+200    4109
+232    2586
+168    1511
+80     1053
+136     639
+Name: count, dtype: int64 
+
+Feature 'fwd_packets/s' has 36035 unique values:
+fwd_packets/s
+6.666667e+05    2023
+5.000000e+05    1147
+2.000000e+06     833
+1.000000e+06     361
+4.166667e+04     183
+7.500000e+05     128
+1.234568e+04     124
+1.282051e+04     118
+1.162791e+04     117
+1.204819e+04     117
+Name: count, dtype: int64 
+
+Feature 'bwd_packets/s' has 33562 unique values:
+bwd_packets/s
+0.00000        9791
+12345.67901     112
+11627.90698     109
+12048.19277     108
+12820.51282     104
+11904.76190     102
+11494.25287     100
+10526.31579      99
+11764.70588      98
+12195.12195      98
+Name: count, dtype: int64 
+
+Feature 'min_packet_length' has 123 unique values:
+min_packet_length
+0     33188
+6      3652
+44     1009
+42     1008
+32      976
+34      908
+35      852
+48      848
+45      829
+40      779
+Name: count, dtype: int64 
+
+Feature 'max_packet_length' has 2147 unique values:
+max_packet_length
+0       11209
+6        3647
+5792     3350
+4344     2699
+1460     1271
+31       1271
+7240      921
+48        803
+46        681
+1448      666
+Name: count, dtype: int64 
+
+Feature 'packet_length_mean' has 11202 unique values:
+packet_length_mean
+0.000000     11209
+6.000000      2648
+48.000000      479
+20.666667      462
+38.400000      324
+70.800000      310
+2.400000       303
+23.000000      282
+30.714286      233
+24.666667      227
+Name: count, dtype: int64 
+
+Feature 'packet_length_std' has 17215 unique values:
+packet_length_std
+0.000000     15042
+8.763561      2140
+9.237604       835
+70.108487      574
+17.897858      555
+3.286335       489
+17.527122      448
+15.336232      416
+35.054244      281
+55.867701      279
+Name: count, dtype: int64 
+
+Feature 'packet_length_variance' has 17092 unique values:
+packet_length_variance
+0.000000       15042
+76.800000       2140
+85.333333        835
+4915.200000      574
+320.333333       555
+10.800000        489
+307.200000       448
+235.200000       416
+1228.800000      281
+3121.200000      279
+Name: count, dtype: int64 
+
+Feature 'fin_flag_count' has 2 unique values:
+fin_flag_count
+0    53219
+1     3712
+Name: count, dtype: int64 
+
+Feature 'syn_flag_count' has 2 unique values:
+syn_flag_count
+0    54053
+1     2878
+Name: count, dtype: int64 
+
+Feature 'rst_flag_count' has 2 unique values:
+rst_flag_count
+0    56911
+1       20
+Name: count, dtype: int64 
+
+Feature 'psh_flag_count' has 2 unique values:
+psh_flag_count
+0    44781
+1    12150
+Name: count, dtype: int64 
+
+Feature 'ack_flag_count' has 2 unique values:
+ack_flag_count
+0    35726
+1    21205
+Name: count, dtype: int64 
+
+Feature 'urg_flag_count' has 2 unique values:
+urg_flag_count
+0    52006
+1     4925
+Name: count, dtype: int64 
+
+Feature 'cwe_flag_count' has 1 unique values:
+cwe_flag_count
+0    56931
+Name: count, dtype: int64 
+
+Feature 'ece_flag_count' has 2 unique values:
+ece_flag_count
+0    56911
+1       20
+Name: count, dtype: int64 
+
+Feature 'down/up_ratio' has 10 unique values:
+down/up_ratio
+1     32031
+0     23797
+2       923
+3       106
+4        46
+5        21
+6         4
+28        1
+26        1
+8         1
+Name: count, dtype: int64 
+
+Feature 'average_packet_size' has 10843 unique values:
+average_packet_size
+0.000000     11209
+9.000000      2413
+31.000000      464
+72.000000      418
+3.000000       341
+88.500000      332
+48.000000      326
+6.000000       291
+28.750000      278
+35.833333      233
+Name: count, dtype: int64 
+
+Feature 'avg_fwd_segment_size' has 6689 unique values:
+avg_fwd_segment_size
+0.0     11369
+6.0      3165
+44.0     1007
+42.0      984
+32.0      974
+34.0      906
+35.0      862
+48.0      862
+45.0      810
+38.0      770
+Name: count, dtype: int64 
+
+Feature 'avg_bwd_segment_size' has 7036 unique values:
+avg_bwd_segment_size
+0.000000       16484
+1932.500000     3750
+1656.428571     2280
+6.000000        1796
+2319.000000     1144
+48.000000        803
+46.000000        527
+1449.375000      374
+132.000000       373
+79.000000        329
+Name: count, dtype: int64 
+
+Feature 'fwd_avg_bytes/bulk' has 1 unique values:
+fwd_avg_bytes/bulk
+0    56931
+Name: count, dtype: int64 
+
+Feature 'fwd_avg_packets/bulk' has 1 unique values:
+fwd_avg_packets/bulk
+0    56931
+Name: count, dtype: int64 
+
+Feature 'fwd_avg_bulk_rate' has 1 unique values:
+fwd_avg_bulk_rate
+0    56931
+Name: count, dtype: int64 
+
+Feature 'bwd_avg_bytes/bulk' has 1 unique values:
+bwd_avg_bytes/bulk
+0    56931
+Name: count, dtype: int64 
+
+Feature 'bwd_avg_packets/bulk' has 1 unique values:
+bwd_avg_packets/bulk
+0    56931
+Name: count, dtype: int64 
+
+Feature 'bwd_avg_bulk_rate' has 1 unique values:
+bwd_avg_bulk_rate
+0    56931
+Name: count, dtype: int64 
+
+Feature 'subflow_fwd_packets' has 246 unique values:
+subflow_fwd_packets
+2     22234
+1     10727
+3      3417
+7      2840
+6      2496
+4      2332
+8      2220
+9      1884
+5      1811
+10      860
+Name: count, dtype: int64 
+
+Feature 'subflow_fwd_bytes' has 3297 unique values:
+subflow_fwd_bytes
+0     11369
+12     2123
+6      1276
+64     1043
+31      921
+68      796
+70      782
+60      731
+76      695
+72      679
+Name: count, dtype: int64 
+
+Feature 'subflow_bwd_packets' has 300 unique values:
+subflow_bwd_packets
+2     14825
+1     13166
+0      9773
+6      4668
+7      2962
+5      2056
+4      1694
+8       897
+3       613
+15      557
+Name: count, dtype: int64 
+
+Feature 'subflow_bwd_bytes' has 5530 unique values:
+subflow_bwd_bytes
+0        16484
+11595     7752
+6         1718
+46         667
+96         501
+188        431
+264        330
+204        316
+112        308
+48         300
+Name: count, dtype: int64 
+
+Feature 'init_win_bytes_forward' has 1746 unique values:
+init_win_bytes_forward
+-1        19986
+ 29200     5881
+ 8192      5207
+ 251       4773
+ 0         3700
+ 274       3260
+ 65535     1252
+ 256        570
+ 122        498
+ 229        492
+Name: count, dtype: int64 
+
+Feature 'init_win_bytes_backward' has 1731 unique values:
+init_win_bytes_backward
+-1        29481
+ 235       8835
+ 0         1558
+ 229        596
+ 33304      545
+ 256        524
+ 60         509
+ 31         407
+ 122        392
+ 29200      363
+Name: count, dtype: int64 
+
+Feature 'act_data_pkt_fwd' has 143 unique values:
+act_data_pkt_fwd
+1     21013
+0     19284
+3      4539
+2      3867
+4      1636
+6      1357
+5       988
+7       651
+12      454
+8       432
+Name: count, dtype: int64 
+
+Feature 'min_seg_size_forward' has 10 unique values:
+min_seg_size_forward
+ 32           28409
+ 20           27010
+ 40            1266
+ 44             138
+ 28              56
+ 0               38
+ 48               6
+ 56               5
+ 52               2
+-536870660        1
+Name: count, dtype: int64 
+
+Feature 'active_mean' has 8721 unique values:
+active_mean
+0.0       42590
+4.0         313
+5.0         311
+6.0         158
+2.0         133
+3.0         122
+996.0        62
+989.0        59
+993.0        58
+1002.0       56
+Name: count, dtype: int64 
+
+Feature 'active_std' has 4126 unique values:
+active_std
+0.000000e+00    52803
+9.475231e+01        2
+1.838478e+01        2
+7.778175e+00        2
+3.669128e+01        1
+1.451872e+06        1
+1.594206e+06        1
+4.298559e+04        1
+2.551952e+05        1
+2.766700e+05        1
+Name: count, dtype: int64 
+
+Feature 'active_max' has 8684 unique values:
+active_max
+0.0       42590
+4.0         313
+5.0         311
+6.0         158
+2.0         133
+3.0         122
+996.0        62
+989.0        59
+993.0        58
+1002.0       56
+Name: count, dtype: int64 
+
+Feature 'active_min' has 7909 unique values:
+active_min
+0.0       42590
+5.0         313
+4.0         313
+6.0         158
+2.0         135
+3.0         126
+996.0        62
+989.0        59
+1002.0       58
+993.0        58
+Name: count, dtype: int64 
+
+Feature 'idle_mean' has 4082 unique values:
+idle_mean
+0.0            42207
+10000000.0      1096
+100000000.0      416
+10200000.0       358
+98300000.0       345
+98700000.0       313
+98600000.0       301
+98400000.0       279
+99400000.0       217
+85000000.0       207
+Name: count, dtype: int64 
+
+Feature 'idle_std' has 4048 unique values:
+idle_std
+0.0           52467
+12200000.0      132
+18800000.0       77
+12300000.0       26
+60000000.0       18
+59700000.0       18
+59600000.0       14
+59400000.0       13
+59900000.0       11
+59800000.0       11
+Name: count, dtype: int64 
+
+Feature 'idle_max' has 2621 unique values:
+idle_max
+0.0            42207
+10000000.0      2249
+10200000.0       577
+100000000.0      469
+98300000.0       346
+98700000.0       314
+98600000.0       302
+98400000.0       279
+101000000.0      234
+99400000.0       221
+Name: count, dtype: int64 
+
+Feature 'idle_min' has 5071 unique values:
+idle_min
+0.0            42207
+10000000.0       557
+100000000.0      416
+98300000.0       345
+98700000.0       313
+98600000.0       301
+98400000.0       279
+99400000.0       217
+85000000.0       207
+84900000.0       201
+Name: count, dtype: int64 
+
+Feature 'label' has 8 unique values:
+label
+BENIGN              43476
+DoS Hulk            11652
+DoS GoldenEye         527
+FTP-Patator           411
+SSH-Patator           305
+DoS slowloris         282
+DoS Slowhttptest      276
+Heartbleed              2
+Name: count, dtype: int64 
+
+
+Mapa de classes (nome -> id):
+Benign -> 0
+Bf_Patator_FTP -> 1
+Bf_Patator_SSH -> 2
+DoS_GoldenEye -> 3
+DoS_Hulk -> 4
+DoS_Slowhttptest -> 5
+DoS_Slowloris -> 6
+Heartbleed -> 7
+
+----------------------------------------
+Final Dataset
+
+Number of features: 83
+
+Feature 0 -> flow_duration
+Feature 1 -> total_fwd_packets
+Feature 2 -> total_backward_packets
+Feature 3 -> total_length_of_fwd_packets
+Feature 4 -> total_length_of_bwd_packets
+Feature 5 -> fwd_packet_length_max
+Feature 6 -> fwd_packet_length_min
+Feature 7 -> fwd_packet_length_mean
+Feature 8 -> fwd_packet_length_std
+Feature 9 -> bwd_packet_length_max
+Feature 10 -> bwd_packet_length_min
+Feature 11 -> bwd_packet_length_mean
+Feature 12 -> bwd_packet_length_std
+Feature 13 -> flow_bytes/s
+Feature 14 -> flow_packets/s
+Feature 15 -> flow_iat_mean
+Feature 16 -> flow_iat_std
+Feature 17 -> flow_iat_max
+Feature 18 -> flow_iat_min
+Feature 19 -> fwd_iat_total
+Feature 20 -> fwd_iat_mean
+Feature 21 -> fwd_iat_std
+Feature 22 -> fwd_iat_max
+Feature 23 -> fwd_iat_min
+Feature 24 -> bwd_iat_total
+Feature 25 -> bwd_iat_mean
+Feature 26 -> bwd_iat_std
+Feature 27 -> bwd_iat_max
+Feature 28 -> bwd_iat_min
+Feature 29 -> fwd_psh_flags
+Feature 30 -> bwd_psh_flags
+Feature 31 -> fwd_urg_flags
+Feature 32 -> bwd_urg_flags
+Feature 33 -> fwd_header_length
+Feature 34 -> bwd_header_length
+Feature 35 -> fwd_packets/s
+Feature 36 -> bwd_packets/s
+Feature 37 -> min_packet_length
+Feature 38 -> max_packet_length
+Feature 39 -> packet_length_mean
+Feature 40 -> packet_length_std
+Feature 41 -> packet_length_variance
+Feature 42 -> fin_flag_count
+Feature 43 -> syn_flag_count
+Feature 44 -> rst_flag_count
+Feature 45 -> psh_flag_count
+Feature 46 -> ack_flag_count
+Feature 47 -> urg_flag_count
+Feature 48 -> cwe_flag_count
+Feature 49 -> ece_flag_count
+Feature 50 -> down/up_ratio
+Feature 51 -> average_packet_size
+Feature 52 -> avg_fwd_segment_size
+Feature 53 -> avg_bwd_segment_size
+Feature 54 -> fwd_avg_bytes/bulk
+Feature 55 -> fwd_avg_packets/bulk
+Feature 56 -> fwd_avg_bulk_rate
+Feature 57 -> bwd_avg_bytes/bulk
+Feature 58 -> bwd_avg_packets/bulk
+Feature 59 -> bwd_avg_bulk_rate
+Feature 60 -> subflow_fwd_packets
+Feature 61 -> subflow_fwd_bytes
+Feature 62 -> subflow_bwd_packets
+Feature 63 -> subflow_bwd_bytes
+Feature 64 -> init_win_bytes_forward
+Feature 65 -> init_win_bytes_backward
+Feature 66 -> act_data_pkt_fwd
+Feature 67 -> min_seg_size_forward
+Feature 68 -> active_mean
+Feature 69 -> active_std
+Feature 70 -> active_max
+Feature 71 -> active_min
+Feature 72 -> idle_mean
+Feature 73 -> idle_std
+Feature 74 -> idle_max
+Feature 75 -> idle_min
+Feature 76 -> destination_port_53
+Feature 77 -> destination_port_80
+Feature 78 -> destination_port_443
+Feature 79 -> destination_port_other
+Feature 80 -> protocol_6
+Feature 81 -> protocol_17
+Feature 82 -> protocol_other
+
+Number of classes: 8
+
+Class 0 -> 0
+Training set support: 30433
+Holdout set support: 13043
+
+Class 1 -> 1
+Training set support: 288
+Holdout set support: 123
+
+Class 2 -> 2
+Training set support: 214
+Holdout set support: 91
+
+Class 3 -> 3
+Training set support: 369
+Holdout set support: 158
+
+Class 4 -> 4
+Training set support: 8156
+Holdout set support: 3496
+
+Class 5 -> 5
+Training set support: 193
+Holdout set support: 83
+
+Class 6 -> 6
+Training set support: 197
+Holdout set support: 85
+
+Class 7 -> 7
+Training set support: 1
+Holdout set support: 1
+
+
+Preprocessing concluído (label numérica).
