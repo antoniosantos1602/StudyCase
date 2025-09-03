@@ -65,6 +65,10 @@ def preprocess_cicids2017(
         "timestamp",
         "fwd_header_length.1",
         "source_port",
+        "fwd_psh_flags",
+        "bwd_psh_flags",
+        "fwd_urg_flags",
+        "bwd_urg_flags",
     ]
     df = df.drop(columns=cols_to_drop, errors="ignore")
     df.replace([np.inf, -np.inf], np.nan, inplace=True)
@@ -75,6 +79,15 @@ def preprocess_cicids2017(
         df.info()
         print("\n")
         check_column_values(df)
+
+    # -------- NOVO: remover linhas com valores negativos em QUALQUER feature numérica --------
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    mask_negativos = (df[numeric_cols] < 0).any(axis=1)
+    num_linhas_negativas = mask_negativos.sum()
+
+    if num_linhas_negativas > 0:
+        print(f"\n⚠️ Foram removidas {num_linhas_negativas} linhas com valores negativos em qualquer coluna numérica.\n")
+        df = df.loc[~mask_negativos].reset_index(drop=True)
 
     # -------- label textual normalizada --------
     if binary:
@@ -90,13 +103,13 @@ def preprocess_cicids2017(
             x = str(x)
             if x in ("BENIGN", "Normal"): return "Benign"
             m = {
-                "SSH-Patator":"Bf_Patator_SSH",
-                "FTP-Patator":"Bf_Patator_FTP",
-                "DoS Hulk":"DoS_Hulk",
-                "DoS GoldenEye":"DoS_GoldenEye",
-                "DoS slowloris":"DoS_Slowloris",
-                "DoS Slowhttptest":"DoS_Slowhttptest",
-                "Heartbleed":"Heartbleed",
+                "SSH-Patator": "Bf_Patator_SSH",
+                "FTP-Patator": "Bf_Patator_FTP",
+                "DoS Hulk": "DoS_Hulk",
+                "DoS GoldenEye": "DoS_GoldenEye",
+                "DoS slowloris": "DoS_Slowloris",
+                "DoS Slowhttptest": "DoS_Slowhttptest",
+                "Heartbleed": "Heartbleed",
             }
             return m.get(x, x.strip())
         y_text = df["label"].astype(str).map(norm_lab)
@@ -106,9 +119,9 @@ def preprocess_cicids2017(
 
     # --- one-hot para destination_port (53,80,443,other) ---
     if "destination_port" in X.columns:
-        svc_map = {53: "53", 80: "80", 443: "443"}
+        svc_map = {53: "53", 80: "80", 443: "443", 21:"21", 22:"22", 123:"123", 137:"137"}
         X["destination_port_cat"] = X["destination_port"].map(svc_map).fillna("other").astype(str)
-        X["destination_port_cat"] = pd.Categorical(X["destination_port_cat"], categories=["53","80","443","other"])
+        X["destination_port_cat"] = pd.Categorical(X["destination_port_cat"], categories=["53", "80", "443", "21","22", "123", "137" ,"other"])
         X = pd.get_dummies(X, columns=["destination_port_cat"], prefix="destination_port", dtype=int)
         X = X.drop(columns=["destination_port"], errors="ignore")
 
@@ -116,14 +129,14 @@ def preprocess_cicids2017(
     if "protocol" in X.columns:
         proto_map = {6: "6", 17: "17"}
         X["protocol_cat"] = X["protocol"].map(proto_map).fillna("other").astype(str)
-        X["protocol_cat"] = pd.Categorical(X["protocol_cat"], categories=["6","17","other"])
+        X["protocol_cat"] = pd.Categorical(X["protocol_cat"], categories=["6", "17", "other"])
         X = pd.get_dummies(X, columns=["protocol_cat"], prefix="protocol", dtype=int)
         X = X.drop(columns=["protocol"], errors="ignore")
 
     # garantir colunas OHE fixas
     for col in [
-        "destination_port_53","destination_port_80","destination_port_443","destination_port_other",
-        "protocol_6","protocol_17","protocol_other"
+        "destination_port_53", "destination_port_80", "destination_port_443", "destination_port_other",
+        "protocol_6", "protocol_17", "protocol_other"
     ]:
         if col not in X.columns:
             X[col] = 0
@@ -142,16 +155,13 @@ def preprocess_cicids2017(
 
     # -------- transformar label para NUMÉRICA --------
     if binary:
-        # 0 = Benign, 1 = Malicious
         y_num = (y_text != "Benign").astype(int)
         class_names = np.array([0, 1])  # só para logs
     else:
-        # IDs estáveis por ordem alfabética dos nomes normalizados
         classes_sorted = sorted(y_text.unique().tolist())
         cat = pd.Categorical(y_text, categories=classes_sorted)
         y_num = pd.Series(cat.codes, name="label", dtype=int)  # 0..K-1
         class_names = np.arange(len(classes_sorted))
-        # log do mapeamento
         print("\nMapa de classes (nome -> id):")
         for i, name in enumerate(classes_sorted):
             print(f"{name} -> {i}")
@@ -179,6 +189,7 @@ def preprocess_cicids2017(
         X_out = X.copy()
         X_out["label"] = y_num.values
         return X_out, None
+
 
 def start_preprocessing(
     prep_fn,
@@ -225,7 +236,7 @@ if __name__ == "__main__":
             "check_initial": True,
             "check_final": True,
             "seed": 123,
-            "sample_fraction": 0.05,
+            "sample_fraction": 0.2,
         }
 
         start_preprocessing(
